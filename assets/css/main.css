@@ -1,0 +1,94 @@
+@font-face{
+    font-family:"Nirmala UI";
+    src:url(../fonts/Nirmala_0.ttf);
+}
+
+body {
+  padding-top: 70px;
+  font-family:"Nirmala UI",sans-serif;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.table>thead>tr>th {
+    vertical-align: middle;
+}
+
+img.cover {
+	height: 100%;
+	width: 100%;
+	object-fit:cover;
+	-o-object-fit:cover;
+}
+
+.carousel {
+    background: linear-gradient(#fff, #9efff2);
+}
+
+.carousel-control.right, .carousel-control.left {
+	background-image: none;
+}
+
+.carousel-control, .carousel-control:hover {
+	color: #35AC8A;
+}
+
+.carousel-caption {
+    color: inherit;
+    /*text-shadow: none;*/
+    background-color: rgba(0, 0, 0, .5);
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fff;
+}
+
+.th-label {
+    width: 120px;
+}
+
+.text-italic {
+    font-style: italic;
+}
+
+.footer {
+    background: #ddd;
+    padding: 20px 0;
+}
+
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+.header {
+    background:#2D9376;
+    color:#fff;
+    padding: 10px;
+    margin-top: 0;
+}
+
+.search-field {
+    border-radius: 20px;
+}
+
+.panel-default .panel-heading {
+    background: #FFF;
+}
+
+.white {
+    color: white;
+}
+
+.thumbnail:hover {
+    /*background-color: #2D9376;*/
+    border-color: #2D9376;
+}
