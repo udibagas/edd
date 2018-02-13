@@ -49,25 +49,6 @@
 
 <div class="row">
     <?php foreach ($detail as $d) : if (!$d->foto) continue; ?>
-    <div class="col-md-3 col-sm-4 col-xs-6 gal-item">
-        <div class="box">
-            <a href="#" data-toggle="modal" data-target="#<?= $d->id ?>">
-                <img src="<?= base_url($d->foto) ?>" alt="<?= $d->bentuk_fisik_bangunan ?>" />
-                <h3 class="text-center"><?= $d->bentuk_fisik_bangunan ?></h3>
-            </a>
-            <div class="modal fade" id="<?= $d->id ?>" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <div class="modal-body">
-                            <img src="<?= base_url($d->foto) ?>" alt="<?= $d->bentuk_fisik_bangunan ?>" />
-                            <h3 class="text-center"><?= $d->bentuk_fisik_bangunan ?></h3>
-                            <!-- <a href="<?= site_url('detailAnggaran/hapus_foto/'.$d->id) ?>" class="confirm btn btn-danger btn-xs" style="width:100%;margin-top:10px;">HAPUS FOTO</a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        <?php $this->load->view('_galeri', ['d' => $d]) ?>
     <?php endforeach ?>
 </div>

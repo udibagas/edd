@@ -1,3 +1,9 @@
+<form class="form-inline pull-right" action="" method="get">
+    <input type="hidden" name="kecamatan_id" value="<?= $this->input->get('kecamatan_id') ?>">
+    <input type="text" name="q" value="<?= $this->input->get('q') ?>" class="form-control search-field" placeholder="Cari..."> &nbsp;
+    <a href="<?= site_url('galeri') ?>" class="btn btn-primary search-field"><i class="glyphicon glyphicon-refresh"></i></a>
+</form>
+
 <h3>
     GALERI
     <small>Foto bangunan fisik pemanfaatan anggaran dana desa</small>
@@ -7,41 +13,36 @@
 <div class="row">
     <div class="col-md-3">
         <div class="panel panel-default">
-            <div class="panel-body">
-                <h4>TAG</h4>
-                <hr>
-
-                <?php foreach ($galeri as $d) : if (!$d->foto) continue; ?>
-                    <a href="<?= site_url('galeri?tag='.$d->bentuk_fisik_bangunan) ?>" class="btn btn-default">
-                        <?= $d->desa ?>
+            <div class="panel-heading">
+                <h3 class="panel-title">KECAMATAN</h3>
+            </div>
+            <div class="list-group">
+                <a href="<?= site_url('galeri') ?>" class="list-group-item <?= !$this->input->get('kecamatan_id') ? 'active' : '' ?>">
+                    SEMUA KECAMATAN
+                </a>
+                <?php foreach ($kecamatan as $k) : ?>
+                    <a href="<?= site_url('galeri?kecamatan_id='.$k->id.'&q='.$this->input->get('q')) ?>" class="list-group-item <?= $this->input->get('kecamatan_id') == $k->id ? 'active' : '' ?>">
+                        <?= strtoupper($k->nama) ?>
                     </a>
                 <?php endforeach ?>
-
             </div>
         </div>
     </div>
     <div class="col-md-9">
+        <?php if ($filter_kecamatan || $this->input->get('q')) : ?>
+            <div class="alert alert-info">
+                Gambar untuk
+                <?php if ($this->input->get('q')): ?>
+                    kata kunci <strong><u><?= $this->input->get('q') ?></u></strong>
+                <?php endif ?>
+                <?php if ($filter_kecamatan): ?>
+                    kecamatan <strong><u><?= $filter_kecamatan->nama ?></u></strong>
+                <?php endif ?>
+            </div>
+        <?php endif ?>
         <div class="row">
             <?php foreach ($galeri as $d) : if (!$d->foto) continue; ?>
-                <div class="col-md-3 col-sm-4 col-xs-6 gal-item">
-                    <div class="box">
-                        <a href="#" data-toggle="modal" data-target="#<?= $d->id ?>">
-                            <img src="<?= base_url($d->foto) ?>" alt="<?= $d->bentuk_fisik_bangunan ?>" />
-                            <h3 class="text-center"><?= $d->bentuk_fisik_bangunan ?></h3>
-                        </a>
-                        <div class="modal fade" id="<?= $d->id ?>" tabindex="-1" role="dialog">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <div class="modal-body">
-                                        <img src="<?= base_url($d->foto) ?>" alt="<?= $d->bentuk_fisik_bangunan ?>" />
-                                        <h3 class="text-center"><?= $d->bentuk_fisik_bangunan ?></h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php $this->load->view('_galeri', ['d' => $d]) ?>
             <?php endforeach ?>
         </div>
     </div>

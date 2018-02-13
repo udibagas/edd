@@ -25,18 +25,19 @@ class Pesan extends MY_Controller {
 					'smtp_host' => 'localhost',
 					'smtp_port' => 25,
 					'smtp_user' => 'admin@edd-polreskatingan.com',
-					'smtp_pass' => 'bismillah12345',
+					'smtp_pass' => 'rahasia12345',
 				]);
 
 				$recipients = [
 					'udibagas@gmail.com',
+					'admin@edd-polreskatingan.com'
 				];
 
-				$users = $this->db->get('user');
-
-				foreach ($users->result() as $u) {
-					$recipients[] = $u->email;
-				}
+				// $users = $this->db->get('user');
+				//
+				// foreach ($users->result() as $u) {
+				// 	$recipients[] = $u->email;
+				// }
 
 				$this->email->from($data['email'], $data['nama']);
 				$this->email->to($recipients);
@@ -89,7 +90,9 @@ class Pesan extends MY_Controller {
 							->or_like('subyek', $q)
 							->or_like('pesan', $q)
 						->group_end()
-						->get('pesan', $pagination['per_page'], $this->uri->segment(3))->result(),
+						->order_by('id', 'DESC')
+						->get('pesan', $pagination['per_page'], $this->uri->segment(3))
+						->result(),
 		]);
 	}
 
@@ -108,7 +111,7 @@ class Pesan extends MY_Controller {
 			'/pesan' => 'PESAN',
 			'#' => 'LIHAT PESAN',
 		];
-		
+
 		$this->render('pesan/show', [
 			'pesan' => $pesan,
 		]);

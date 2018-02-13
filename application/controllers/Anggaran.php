@@ -128,7 +128,10 @@ class Anggaran extends MY_Controller {
 		$this->render('anggaran/edit', [
 			'anggaran'	=> $this->anggaran->find($id),
 			'detail'	=> $this->db
-							->select('detail_anggaran.*, (detail_anggaran.anggaran_biaya - detail_anggaran.realisasi_biaya) as sisa')
+							->select('detail_anggaran.*, (detail_anggaran.anggaran_biaya - detail_anggaran.realisasi_biaya) as sisa, desa.nama as desa, kecamatan.nama as kecamatan')
+							->join('anggaran', 'anggaran.id = detail_anggaran.anggaran_id')
+							->join('desa', 'desa.id = anggaran.desa_id')
+							->join('kecamatan', 'kecamatan.id = desa.kecamatan_id')
 							->where('anggaran_id', $id)
 							->get('detail_anggaran')
 							->result(),

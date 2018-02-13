@@ -3,9 +3,9 @@
         <form class="form-inline pull-right" action="<?= site_url('pesan/admin') ?>" method="get">
             <input type="text" name="q" placeholder="Cari Pesan" class="form-control" value="<?= $this->input->get('q') ?>">
             <a href="<?= site_url('pesan/admin') ?>" class="btn btn-primary"><i class="glyphicon glyphicon-refresh"></i></a>
-            <a href="<?= site_url('/pesan/setting') ?>" class="btn btn-primary" title="Setting">
+            <!-- <a href="<?= site_url('/pesan/setting') ?>" class="btn btn-primary" title="Setting">
                 <i class="glyphicon glyphicon-wrench"></i>
-            </a>
+            </a> -->
         </form>
         <h3>PESAN MASUK <small>Kelola</small></h3>
         <hr>
@@ -35,16 +35,16 @@
                     <td><?= $p->nama ?></td>
                     <td>
                         <a href="mailto:<?= $p->email ?>"><?= $p->email ?></a><br>
-                        <?= $p->phone ?>
+                        <?= $p->no_hp ?>
                     </td>
                     <td><?= date('d-M-Y H:i', strtotime($p->waktu)) ?></td>
                     <td>
                         <div class="btn-group">
-                            <a href="/pesan/balas/<?= $p->id ?>" class="btn btn-primary btn-sm" title="Balas">
+                            <!-- <a href="<?= site_url('pesan/balas/'.$p->id) ?>" class="btn btn-primary btn-sm" title="Balas">
                                 <i class="fa fa-reply"></i>
-                            </a>
-                            <a href="/pesan/delete/<?= $p->id ?>" class="confirm btn btn-danger btn-sm" title="Hapus">
-                                <i class="fa fa-trash"></i>
+                            </a> -->
+                            <a href="<?= site_url('pesan/delete/'.$p->id) ?>" class="confirm" title="Hapus">
+                                <i class="glyphicon glyphicon-trash"></i>
                             </a>
                         </div>
                     </td>
